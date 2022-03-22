@@ -1,4 +1,4 @@
-package UMLeditor.basicObject;
+package UMLeditor.objects.basic;
 
 import UMLeditor.structure.ObjectVector;
 

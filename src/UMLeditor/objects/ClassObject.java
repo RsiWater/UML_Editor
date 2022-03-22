@@ -1,7 +1,6 @@
-package UMLeditor.basicObject;
+package UMLeditor.objects.basic;
 
 import java.awt.*;
-import java.awt.geom.Rectangle2D;
 
 public class ClassObject extends BasicObject{
     public ClassObject(Point p){
