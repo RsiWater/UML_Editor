@@ -96,4 +96,8 @@ public class BasicObject {
 
         return rst;
     }
+    public ArrayList<BasicObject> getChildren(){
+        return null;
+    }
+
 }

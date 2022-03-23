@@ -1,6 +1,7 @@
 package UMLeditor.objects;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 public class UseCaseObject extends BasicObject{
     public UseCaseObject(Point p){

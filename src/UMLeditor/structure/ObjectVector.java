@@ -16,14 +16,14 @@ public class ObjectVector {
         this.endDir = endIdx;
     }
 
-    static public Point judgePoint(Point[] pnts, String dir)
-    {
-        return switch (dir) {
-            case "up" -> pnts[0];
-            case "down" -> pnts[1];
-            case "left" -> pnts[2];
-            case "right" -> pnts[3];
-            default -> null;
-        };
-    }
+//    static public Point judgePoint(Point[] pnts, String dir)
+//    {
+//        return switch (dir) {
+//            case "up" -> pnts[0];
+//            case "down" -> pnts[1];
+//            case "left" -> pnts[2];
+//            case "right" -> pnts[3];
+//            default -> null;
+//        };
+//    }
 }

@@ -21,13 +21,13 @@ public class EditMenu extends JMenu {
         this.group.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                panel.groupObjects();
+                panel.editBehavior(0);
             }
         });
         this.unGroup.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("ungroup");
+                panel.editBehavior(1);
             }
         });
 

@@ -85,6 +85,11 @@ public class Composite extends BasicObject{
         return rst;
     }
 
+    @Override
+    public ArrayList<BasicObject> getChildren() {
+        return this.objects;
+    }
+
     private void recalculateAttrs()
     {
         int mostLeftX = Integer.MAX_VALUE, mostRightX = Integer.MIN_VALUE;

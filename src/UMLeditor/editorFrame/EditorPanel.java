@@ -108,20 +108,35 @@ public class EditorPanel extends JPanel {
             ele.setBeSelected(false);
         }
     }
-    public void groupObjects(){
+    public void editBehavior(int behaviorCode){
         ArrayList<BasicObject> objList = this.getSelectedObject();
-        if(objList.size() > 0)
+        switch (behaviorCode)
         {
-            for(BasicObject ele : objList)
-            {
-                this.objects.remove(ele);
-            }
-            Composite newObj = new Composite(objList);
-            this.objects.add(newObj);
+            case 0:
+                if(objList.size() > 0)
+                {
+                    for(BasicObject ele : objList)
+                    {
+                        this.objects.remove(ele);
+                    }
+                    Composite newObj = new Composite(objList);
+                    this.objects.add(newObj);
+                }
+                break;
+            case 1:
+                if(objList.size() == 1)
+                {
+                    ArrayList<BasicObject> childrenOfObj = objList.get(0).getChildren();
+                    if(!Objects.isNull(childrenOfObj))
+                    {
+                        this.objects.addAll(childrenOfObj);
+                        this.objects.remove(objList.get(0));
+                    }
+                }
+                break;
+            default:
+                break;
         }
-        this.repaint();
-    }
-    public void unGroupObjects(){
         this.repaint();
     }
     public BasicObject getTargetObj() {
