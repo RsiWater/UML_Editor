@@ -6,16 +6,19 @@ import UMLeditor.structure.ObjectVector;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class Connect extends MouseAction{
     protected BasicObject startObj;
     protected BasicObject endObj;
+    protected Point preLoc;
     protected String startLocation;
     protected String endLocation;
 
     public Connect(EditorPanel p) {
         super(p);
+        this.preLoc = new Point();
     }
 
     @Override
@@ -23,17 +26,22 @@ public class Connect extends MouseAction{
         super.mousePressed(e);
         this.startObj = this.panel.selectObject(e.getX(), e.getY());
         if(!Objects.isNull(this.startObj) && this.startObj.isCanConnect())
-            this.assignLocation(new Point(e.getX(), e.getY()), this.startObj, true);
+        {
+            this.preLoc.setLocation(e.getX(), e.getY());
+        }
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
         super.mouseReleased(e);
+        int[] cntIdxs = null;
         this.endObj = this.panel.selectObject(e.getX(), e.getY());
-        if(!Objects.isNull(this.endObj) && this.endObj.isCanConnect())
-            this.assignLocation(new Point(e.getX(), e.getY()), this.endObj, false);
-        if(!Objects.isNull(this.startObj) && !Objects.isNull(this.endObj) && this.startObj.isCanConnect() && this.endObj.isCanConnect())
-            this.startObj.getCntList().add(new ObjectVector(this.endObj, this.startLocation, this.endLocation));
+        if(!Objects.isNull(this.startObj) && !Objects.isNull(this.endObj) && this.endObj.isCanConnect())
+        {
+            cntIdxs = this.searchCntPoint(this.startObj, this.endObj, this.preLoc, new Point(e.getX(), e.getY()));
+            if(this.startObj.isCanConnect() && this.endObj.isCanConnect())
+                this.startObj.getCntList().add(new ObjectVector(this.startObj, this.endObj, cntIdxs[0], cntIdxs[1]));
+        }
         this.panel.repaint();
     }
 
@@ -41,31 +49,38 @@ public class Connect extends MouseAction{
     {
         return Math.sqrt(Math.pow(p2.x-p1.x, 2) + Math.pow(p2.y-p1.y, 2));
     }
-    private void assignLocation(Point mouseP, BasicObject targetObj, boolean isStart)
+    private int[] searchCntPoint(BasicObject startObj, BasicObject endObj, Point sp, Point ep)
     {
         //need rewrite the judge circumstance
-        Point[] cntList = {targetObj.getUpPoint(), targetObj.getDownPoint(), targetObj.getLeftPoint(), targetObj.getRightPoint()};
+        ArrayList<Point> startCntList = startObj.getCntPoint(), endCntList = endObj.getCntPoint();
+        int[] rst = new int[2];
         double minDistance = Double.MAX_VALUE, crtDistance;
         int minIdx = 0;
-        String rstDirection;
-        for(int i = 0;i < cntList.length;i++)
+        for(int i = 0;i < startCntList.size();i++)
         {
-            crtDistance = this.distance(mouseP, cntList[i]);
+            crtDistance = this.distance(sp, startCntList.get(i));
             if(minDistance > crtDistance)
             {
                 minDistance = crtDistance;
                 minIdx = i;
             }
         }
-        rstDirection = switch (minIdx) {
-            case 0 -> "up";
-            case 1 -> "down";
-            case 2 -> "left";
-            case 3 -> "right";
-            default -> null;
-        };
+        rst[0] = minIdx;
 
-        if(isStart) this.startLocation = rstDirection;
-        else this.endLocation = rstDirection;
+        minDistance = Double.MAX_VALUE;
+        crtDistance = 0;
+        minIdx = 0;
+        for(int i = 0;i < endCntList.size();i++)
+        {
+            crtDistance = this.distance(ep, endCntList.get(i));
+            if(minDistance > crtDistance)
+            {
+                minDistance = crtDistance;
+                minIdx = i;
+            }
+        }
+        rst[1] = minIdx;
+
+        return rst;
     }
 }

@@ -15,8 +15,6 @@ public class MouseAction implements MouseListener, MouseMotionListener {
     protected String defaultTypeName = "MouseAction";
     protected int width = 100;
     protected int height = 100;
-    protected int mouseX = 0;
-    protected int mouseY = 0;
     protected EditorPanel panel = null;
 
     public MouseAction(EditorPanel p) {
@@ -45,8 +43,6 @@ public class MouseAction implements MouseListener, MouseMotionListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        this.mouseX = e.getX();
-        this.mouseY = e.getY();
     }
 
     @Override

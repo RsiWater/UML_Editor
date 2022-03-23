@@ -32,12 +32,10 @@ public class EditorPanel extends JPanel {
             ele.drawObject(g);
             if(ele.getCntList().size() > 0)
             {
-                for(ObjectVector cntTo : ele.getCntList())
+                for(ObjectVector objVec : ele.getCntList())
                 {
-                    Point[] startPnts = {ele.getUpPoint(), ele.getDownPoint(), ele.getLeftPoint(), ele.getRightPoint()},
-                            endPnts = {cntTo.obj.getUpPoint(), cntTo.obj.getDownPoint(), cntTo.obj.getLeftPoint(), cntTo.obj.getRightPoint()};
-                    Point startP = ObjectVector.judgePoint(startPnts, cntTo.startDir),
-                            endP = ObjectVector.judgePoint(endPnts, cntTo.endDir);
+                    Point startP = objVec.startObj.getCntPoint().get(objVec.startDir),
+                            endP = objVec.endObj.getCntPoint().get(objVec.endDir);
                     g.drawLine(startP.x, startP.y, endP.x, endP.y);
                 }
             }

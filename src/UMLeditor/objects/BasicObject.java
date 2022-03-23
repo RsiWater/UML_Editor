@@ -85,12 +85,15 @@ public class BasicObject {
         leftPoint = new Point(this.location.x, this.location.y + this.height / 2);
         rightPoint = new Point(this.location.x + this.width, this.location.y + this.height / 2);
     }
+    //up, down, left, right %= 0, 1, 2, 3
+    public ArrayList<Point> getCntPoint()
+    {
+        ArrayList<Point> rst = new ArrayList<Point>();
+        rst.add(this.upPoint);
+        rst.add(this.downPoint);
+        rst.add(this.leftPoint);
+        rst.add(this.rightPoint);
 
-    public Point getUpPoint() {return upPoint;}
-
-    public Point getDownPoint() {return downPoint;}
-
-    public Point getLeftPoint() {return leftPoint;}
-
-    public Point getRightPoint() {return rightPoint;}
+        return rst;
+    }
 }

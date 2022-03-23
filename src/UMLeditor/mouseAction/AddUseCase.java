@@ -16,7 +16,7 @@ public class AddUseCase extends MouseAction{
     @Override
     public void mouseClicked(MouseEvent e){
         super.mouseClicked(e);
-        this.panel.addNewObject(new UseCaseObject(new Point(this.mouseX, this.mouseY)));
+        this.panel.addNewObject(new UseCaseObject(new Point(e.getX(), e.getY())));
         this.panel.repaint();
         System.out.println("add use case clicked");
     }

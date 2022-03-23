@@ -5,13 +5,15 @@ import UMLeditor.objects.BasicObject;
 import java.awt.*;
 
 public class ObjectVector {
-    public BasicObject obj;
-    public String startDir, endDir;
-    public ObjectVector(BasicObject obj, String startDir, String endDir)
+    public BasicObject startObj, endObj;
+    public int startDir, endDir;
+    //0 = up, 1 = down, 2 = left, 3 = right
+    public ObjectVector(BasicObject startObj, BasicObject endObj, int startIdx, int endIdx)
     {
-        this.obj = obj;
-        this.startDir = startDir;
-        this.endDir = endDir;
+        this.startObj = startObj;
+        this.endObj = endObj;
+        this.startDir = startIdx;
+        this.endDir = endIdx;
     }
 
     static public Point judgePoint(Point[] pnts, String dir)
