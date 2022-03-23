@@ -32,7 +32,6 @@ public class Select extends MouseAction{
         if(!Objects.isNull(targetObj))
         {
             targetObj.setBeSelected(true);
-            this.panel.setTargetObj(targetObj);
         }
         this.panel.repaint();
         System.out.println("select clicked");
@@ -68,11 +67,6 @@ public class Select extends MouseAction{
     public void mouseDragged(MouseEvent e) {
         super.mouseDragged(e);
         if(this.canDrag){
-//            for(int i = 0;i < this.panel.getSelectedObject().size(); i++)
-//            {
-//                BasicObject tarObj = this.panel.getSelectedObject().get(i);
-//                tarObj.setLocation(e.getX() + selectedObjs.get(i).x,e.getY() + selectedObjs.get(i).y);
-//            }
             for(SelectedObj ele : this.selectedObjs)
             {
                 ele.obj.setLocation(e.getX() + ele.diff.x, e.getY() + ele.diff.y);

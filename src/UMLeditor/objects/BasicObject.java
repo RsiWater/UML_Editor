@@ -6,6 +6,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class BasicObject {
+    protected String name;
     protected Point location, upPoint, downPoint, leftPoint, rightPoint;
     protected int depth = 0;
     protected int width = 0;
@@ -17,6 +18,7 @@ public class BasicObject {
 
     public BasicObject(){
         this.canConnect = true;
+        name = "";
     }
 
     public BasicObject(Point p)
@@ -24,6 +26,7 @@ public class BasicObject {
         this.canConnect = true;
         this.location = p;
         this.setCntPoint();
+        name = "";
     }
 
     public BasicObject(Point p, int w, int h)
@@ -33,9 +36,10 @@ public class BasicObject {
         this.width = w;
         this.height = h;
         this.setCntPoint();
+        name = "";
     }
-
-    public void drawObject(Graphics g) {
+    public void drawObject(Graphics g)
+    {
         if(this.beSelected)
         {
             g.fillRect(this.upPoint.x - (BLACK_POINT_SIDE_WIDTH / 2), this.upPoint.y  - (BLACK_POINT_SIDE_WIDTH / 2), BLACK_POINT_SIDE_WIDTH, BLACK_POINT_SIDE_WIDTH);
@@ -64,6 +68,8 @@ public class BasicObject {
     }
     public boolean isBeSelected() {return beSelected;}
     public boolean isCanConnect() {return canConnect;}
+    public String getName() {return name;}
+    public void setName(String name) {this.name = name;}
     public ArrayList<ObjectVector> getCntList() { return cntList; }
     public Point getLocation() {
         return location;

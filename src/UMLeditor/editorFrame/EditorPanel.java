@@ -13,7 +13,6 @@ import java.util.Objects;
 
 public class EditorPanel extends JPanel {
     private final ArrayList<BasicObject> objects = new ArrayList<BasicObject>();
-    private BasicObject targetObj = null;
 
     @Override
     public void paintComponent(Graphics g){
@@ -138,11 +137,5 @@ public class EditorPanel extends JPanel {
                 break;
         }
         this.repaint();
-    }
-    public BasicObject getTargetObj() {
-        return targetObj;
-    }
-    public void setTargetObj(BasicObject targetObj) {
-        this.targetObj = targetObj;
     }
 }
