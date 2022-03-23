@@ -11,14 +11,14 @@ import java.util.Objects;
 public class Select extends MouseAction{
     private final Point startPoint;
     private final Point endPoint;
-    private final ArrayList<Point> diffPoints;
+    private final ArrayList<SelectedObj> selectedObjs;
     private boolean canDrag = false;
 
     public Select(EditorPanel p){
         super(p);
         this.startPoint = new Point();
         this.endPoint = new Point();
-        this.diffPoints = new ArrayList<>();
+        this.selectedObjs = new ArrayList<>();
         this.btnImgUrl = this.btnImgUrl.concat("\\mouse.png");
         this.defaultTypeName = "SELECT";
 
@@ -45,7 +45,7 @@ public class Select extends MouseAction{
 
         if(!Objects.isNull(targetObj) && targetObj.isBeSelected())
         {
-            this.diffPoints.clear();
+            this.selectedObjs.clear();
             ArrayList<BasicObject> objList = this.panel.getSelectedObject();
             for(BasicObject ele : objList)
             {
@@ -53,7 +53,7 @@ public class Select extends MouseAction{
                 {
                     this.canDrag = true;
                 }
-                this.diffPoints.add(new Point(ele.getLocation().x - e.getX(), ele.getLocation().y - e.getY()));
+                this.selectedObjs.add(new SelectedObj(ele, new Point(ele.getLocation().x - e.getX(), ele.getLocation().y - e.getY())));
             }
         }
         else
@@ -68,10 +68,14 @@ public class Select extends MouseAction{
     public void mouseDragged(MouseEvent e) {
         super.mouseDragged(e);
         if(this.canDrag){
-            for(int i = 0;i < this.panel.getSelectedObject().size(); i++)
+//            for(int i = 0;i < this.panel.getSelectedObject().size(); i++)
+//            {
+//                BasicObject tarObj = this.panel.getSelectedObject().get(i);
+//                tarObj.setLocation(e.getX() + selectedObjs.get(i).x,e.getY() + selectedObjs.get(i).y);
+//            }
+            for(SelectedObj ele : this.selectedObjs)
             {
-                BasicObject tarObj = this.panel.getSelectedObject().get(i);
-                tarObj.setLocation(e.getX() + diffPoints.get(i).x,e.getY() + diffPoints.get(i).y);
+                ele.obj.setLocation(e.getX() + ele.diff.x, e.getY() + ele.diff.y);
             }
         }
         this.panel.repaint();
@@ -93,5 +97,15 @@ public class Select extends MouseAction{
             }
         }
         this.panel.repaint();
+    }
+}
+
+class SelectedObj {
+    public BasicObject obj;
+    public Point diff;
+    public SelectedObj(BasicObject obj, Point diff)
+    {
+        this.obj = obj;
+        this.diff = diff;
     }
 }
