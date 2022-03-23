@@ -1,6 +1,6 @@
 package UMLeditor.structure;
 
-import UMLeditor.basicObject.BasicObject;
+import UMLeditor.objects.BasicObject;
 
 import java.awt.*;
 

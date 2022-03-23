@@ -1,6 +1,6 @@
 package UMLeditor.mouseAction;
 
-import UMLeditor.basicObject.BasicObject;
+import UMLeditor.objects.BasicObject;
 import UMLeditor.editorFrame.EditorPanel;
 import UMLeditor.structure.ObjectVector;
 
@@ -22,7 +22,7 @@ public class Connect extends MouseAction{
     public void mousePressed(MouseEvent e) {
         super.mousePressed(e);
         this.startObj = this.panel.selectObject(e.getX(), e.getY());
-        if(!Objects.isNull(this.startObj))
+        if(!Objects.isNull(this.startObj) && this.startObj.isCanConnect())
             this.assignLocation(new Point(e.getX(), e.getY()), this.startObj, true);
     }
 
@@ -30,9 +30,9 @@ public class Connect extends MouseAction{
     public void mouseReleased(MouseEvent e) {
         super.mouseReleased(e);
         this.endObj = this.panel.selectObject(e.getX(), e.getY());
-        if(!Objects.isNull(this.endObj))
+        if(!Objects.isNull(this.endObj) && this.endObj.isCanConnect())
             this.assignLocation(new Point(e.getX(), e.getY()), this.endObj, false);
-        if(!Objects.isNull(this.startObj) && !Objects.isNull(this.endObj))
+        if(!Objects.isNull(this.startObj) && !Objects.isNull(this.endObj) && this.startObj.isCanConnect() && this.endObj.isCanConnect())
             this.startObj.getCntList().add(new ObjectVector(this.endObj, this.startLocation, this.endLocation));
         this.panel.repaint();
     }

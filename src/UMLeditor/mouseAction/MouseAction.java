@@ -1,6 +1,5 @@
 package UMLeditor.mouseAction;
 
-import UMLeditor.basicObject.BasicObject;
 import UMLeditor.editorFrame.EditorPanel;
 
 import javax.swing.*;

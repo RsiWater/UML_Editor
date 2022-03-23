@@ -1,13 +1,13 @@
 package UMLeditor.editorFrame;
 
-import UMLeditor.basicObject.BasicObject;
-import UMLeditor.basicObject.ClassObject;
+import UMLeditor.objects.BasicObject;
+import UMLeditor.objects.ClassObject;
+import UMLeditor.objects.Composite;
 import UMLeditor.structure.ObjectVector;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.Objects;
 
@@ -109,6 +109,22 @@ public class EditorPanel extends JPanel {
         {
             ele.setBeSelected(false);
         }
+    }
+    public void groupObjects(){
+        ArrayList<BasicObject> objList = this.getSelectedObject();
+        if(objList.size() > 0)
+        {
+            for(BasicObject ele : objList)
+            {
+                this.objects.remove(ele);
+            }
+            Composite newObj = new Composite(objList);
+            this.objects.add(newObj);
+        }
+        this.repaint();
+    }
+    public void unGroupObjects(){
+        this.repaint();
     }
     public BasicObject getTargetObj() {
         return targetObj;

@@ -1,4 +1,4 @@
-package UMLeditor.objects.basic;
+package UMLeditor.objects;
 
 import UMLeditor.structure.ObjectVector;
 
@@ -11,19 +11,24 @@ public class BasicObject {
     protected int width = 0;
     protected int height = 0;
     protected boolean beSelected = false;
+    protected boolean canConnect;
     protected static final int BLACK_POINT_SIDE_WIDTH = 10;
     protected ArrayList<ObjectVector> cntList = new ArrayList<>();
 
-    public BasicObject(){}
+    public BasicObject(){
+        this.canConnect = true;
+    }
 
     public BasicObject(Point p)
     {
+        this.canConnect = true;
         this.location = p;
         this.setCntPoint();
     }
 
     public BasicObject(Point p, int w, int h)
     {
+        this.canConnect = true;
         this.location = p;
         this.width = w;
         this.height = h;
@@ -58,6 +63,7 @@ public class BasicObject {
         this.beSelected = beSelected;
     }
     public boolean isBeSelected() {return beSelected;}
+    public boolean isCanConnect() {return canConnect;}
     public ArrayList<ObjectVector> getCntList() { return cntList; }
     public Point getLocation() {
         return location;

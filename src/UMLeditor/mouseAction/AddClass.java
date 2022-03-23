@@ -1,7 +1,6 @@
 package UMLeditor.mouseAction;
 
-import UMLeditor.basicObject.BasicObject;
-import UMLeditor.basicObject.ClassObject;
+import UMLeditor.objects.ClassObject;
 import UMLeditor.editorFrame.EditorPanel;
 
 import java.awt.*;

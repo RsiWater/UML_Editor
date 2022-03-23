@@ -1,7 +1,8 @@
 package UMLeditor;
 
-import UMLeditor.basicObject.BasicObject;
+import UMLeditor.objects.BasicObject;
 import UMLeditor.editorFrame.EditorPanel;
+import UMLeditor.menuBar.EditMenu;
 import UMLeditor.mouseAction.*;
 
 import javax.swing.*;
@@ -70,7 +71,7 @@ public class UMLeditor{
 
         JMenuBar m = new JMenuBar();
         m.add(new JMenu("File"));
-        m.add(new JMenu("Edit"));
+        m.add(new EditMenu(this.mainPanel));
         //設定外觀風格
 //        UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
 

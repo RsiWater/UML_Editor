@@ -1,21 +1,23 @@
 package UMLeditor.mouseAction;
 
-import UMLeditor.basicObject.BasicObject;
+import UMLeditor.objects.BasicObject;
 import UMLeditor.editorFrame.EditorPanel;
 
-import javax.management.ObjectName;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Objects;
 
 public class Select extends MouseAction{
-    private Point startPoint, endPoint;
-    private ArrayList<Point> diffPoints;
+    private final Point startPoint;
+    private final Point endPoint;
+    private final ArrayList<Point> diffPoints;
     private boolean canDrag = false;
 
     public Select(EditorPanel p){
         super(p);
+        this.startPoint = new Point();
+        this.endPoint = new Point();
         this.diffPoints = new ArrayList<>();
         this.btnImgUrl = this.btnImgUrl.concat("\\mouse.png");
         this.defaultTypeName = "SELECT";
@@ -40,9 +42,8 @@ public class Select extends MouseAction{
     public void mousePressed(MouseEvent e) {
         super.mousePressed(e);
         BasicObject targetObj = this.panel.selectObject(e.getX(), e.getY());
-        boolean canMouseSelect = false;
 
-        if(!Objects.isNull(targetObj))
+        if(!Objects.isNull(targetObj) && targetObj.isBeSelected())
         {
             this.diffPoints.clear();
             ArrayList<BasicObject> objList = this.panel.getSelectedObject();
@@ -50,21 +51,17 @@ public class Select extends MouseAction{
             {
                 if(Objects.equals(targetObj, ele))
                 {
-                    canMouseSelect = true;
+                    this.canDrag = true;
                 }
                 this.diffPoints.add(new Point(ele.getLocation().x - e.getX(), ele.getLocation().y - e.getY()));
-            }
-            if(canMouseSelect)
-            {
-                this.canDrag = true;
             }
         }
         else
         {
             this.canDrag = false;
             this.panel.unselectAllObjects();
-            this.startPoint = new Point(e.getX(), e.getY());
         }
+        this.startPoint.setLocation(e.getX(), e.getY());
     }
 
     @Override
@@ -83,11 +80,10 @@ public class Select extends MouseAction{
     @Override
     public void mouseReleased(MouseEvent e) {
         super.mouseReleased(e);
-        System.out.println("Release");
         if(!this.canDrag)
         {
             ArrayList<BasicObject> rst;
-            this.endPoint = new Point(e.getX(), e.getY());
+            this.endPoint.setLocation(e.getX(), e.getY());
             rst = this.panel.selectObjectsInArea(
                     new Point(Math.min(this.startPoint.x, this.endPoint.x), Math.min(this.startPoint.y, this.endPoint.y)),
                     new Point(Math.max(this.startPoint.x, this.endPoint.x), Math.max(this.startPoint.y, this.endPoint.y)));

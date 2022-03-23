@@ -1,4 +1,4 @@
-package UMLeditor.objects.basic;
+package UMLeditor.objects;
 
 import java.awt.*;
 
