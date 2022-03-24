@@ -13,8 +13,6 @@ public class Connect extends MouseAction{
     protected BasicObject startObj;
     protected BasicObject endObj;
     protected Point preLoc;
-    protected String startLocation;
-    protected String endLocation;
 
     public Connect(EditorPanel p) {
         super(p);

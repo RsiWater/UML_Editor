@@ -112,7 +112,7 @@ public class EditorPanel extends JPanel {
         switch (behaviorCode)
         {
             case 0:
-                if(objList.size() > 0)
+                if(objList.size() > 1)
                 {
                     for(BasicObject ele : objList)
                     {
