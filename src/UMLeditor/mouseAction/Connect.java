@@ -2,6 +2,7 @@ package UMLeditor.mouseAction;
 
 import UMLeditor.objects.BasicObject;
 import UMLeditor.editorFrame.EditorPanel;
+import UMLeditor.structure.Calculator;
 import UMLeditor.structure.ObjectVector;
 
 import java.awt.*;
@@ -34,18 +35,17 @@ public class Connect extends MouseAction{
         super.mouseReleased(e);
         int[] cntIdxs = null;
         this.endObj = this.panel.selectObject(e.getX(), e.getY());
-        if(!Objects.isNull(this.startObj) && !Objects.isNull(this.endObj) && this.endObj.isCanConnect())
+        if(!Objects.isNull(this.startObj) && !Objects.isNull(this.endObj) && this.startObj.isCanConnect() && this.endObj.isCanConnect())
         {
             cntIdxs = this.searchCntPoint(this.startObj, this.endObj, this.preLoc, new Point(e.getX(), e.getY()));
-            if(this.startObj.isCanConnect() && this.endObj.isCanConnect())
-                this.startObj.getCntList().add(new ObjectVector(this.startObj, this.endObj, cntIdxs[0], cntIdxs[1]));
+            this.startObj.getCntList().add(new ObjectVector(this.startObj, this.endObj, cntIdxs[0], cntIdxs[1], this));
         }
         this.panel.repaint();
     }
 
-    private double distance(Point p1, Point p2)
+    public void drawConnect(Point sp, Point ep, Graphics g)
     {
-        return Math.sqrt(Math.pow(p2.x-p1.x, 2) + Math.pow(p2.y-p1.y, 2));
+        g.drawLine(sp.x, sp.y, ep.x, ep.y);
     }
     private int[] searchCntPoint(BasicObject startObj, BasicObject endObj, Point sp, Point ep)
     {
@@ -56,7 +56,7 @@ public class Connect extends MouseAction{
         int minIdx = 0;
         for(int i = 0;i < startCntList.size();i++)
         {
-            crtDistance = this.distance(sp, startCntList.get(i));
+            crtDistance = Calculator.distance(sp, startCntList.get(i));
             if(minDistance > crtDistance)
             {
                 minDistance = crtDistance;
@@ -70,7 +70,7 @@ public class Connect extends MouseAction{
         minIdx = 0;
         for(int i = 0;i < endCntList.size();i++)
         {
-            crtDistance = this.distance(ep, endCntList.get(i));
+            crtDistance = Calculator.distance(ep, endCntList.get(i));
             if(minDistance > crtDistance)
             {
                 minDistance = crtDistance;

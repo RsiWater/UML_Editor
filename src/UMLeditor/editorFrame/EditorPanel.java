@@ -35,7 +35,8 @@ public class EditorPanel extends JPanel {
                 {
                     Point startP = objVec.startObj.getCntPoint().get(objVec.startDir),
                             endP = objVec.endObj.getCntPoint().get(objVec.endDir);
-                    g.drawLine(startP.x, startP.y, endP.x, endP.y);
+                    objVec.mouseAction.drawConnect(startP, endP, g);
+//                    g.drawLine(startP.x, startP.y, endP.x, endP.y);
                 }
             }
         }
