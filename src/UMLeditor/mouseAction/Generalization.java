@@ -16,7 +16,7 @@ public class Generalization extends Connect{
     @Override
     public void mouseClicked(MouseEvent e){
         super.mouseClicked(e);
-        System.out.println("generalization clicked");
+//        System.out.println("generalization clicked");
     }
 
     @Override

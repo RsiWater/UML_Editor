@@ -34,7 +34,7 @@ public class Select extends MouseAction{
             targetObj.setBeSelected(true);
         }
         this.panel.repaint();
-        System.out.println("select clicked");
+//        System.out.println("select clicked");
     }
 
     @Override

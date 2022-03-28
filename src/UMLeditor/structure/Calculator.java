@@ -10,7 +10,6 @@ public class Calculator {
     static public Point rotate(Point baseP, Point tarP, double degree)
     {
         final double COS = Math.cos(Math.toRadians(degree)), SIN = Math.sin(Math.toRadians(degree));
-        final double D;
         Point rst = new Point();
         rst.setLocation((int)((tarP.x - baseP.x) * COS + (tarP.y - baseP.y) * -SIN + baseP.x), (int)((tarP.x - baseP.x) * SIN + (tarP.y - baseP.y) * COS + baseP.y));
 

@@ -16,7 +16,7 @@ public class Composition extends Connect{
     @Override
     public void mouseClicked(MouseEvent e){
         super.mouseClicked(e);
-        System.out.println("composition clicked");
+//        System.out.println("composition clicked");
     }
 
     @Override

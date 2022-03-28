@@ -16,7 +16,7 @@ public class Association extends Connect {
     @Override
     public void mouseClicked(MouseEvent e){
         super.mouseClicked(e);
-        System.out.println("association clicked");
+//        System.out.println("association clicked");
     }
 
     @Override

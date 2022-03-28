@@ -18,6 +18,6 @@ public class AddUseCase extends MouseAction{
         super.mouseClicked(e);
         this.panel.addNewObject(new UseCaseObject(new Point(e.getX(), e.getY())));
         this.panel.repaint();
-        System.out.println("add use case clicked");
+//        System.out.println("add use case clicked");
     }
 }

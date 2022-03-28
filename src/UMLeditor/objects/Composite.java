@@ -48,7 +48,7 @@ public class Composite extends BasicObject{
             ele.drawObject(g);
         }
         //for debug
-        g.drawRect(this.location.x, this.location.y, this.width, this.height);
+//        g.drawRect(this.location.x, this.location.y, this.width, this.height);
     }
     @Override
     public boolean contains(int x, int y) {

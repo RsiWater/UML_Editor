@@ -18,6 +18,6 @@ public class AddClass extends MouseAction{
         super.mouseClicked(e);
         this.panel.addNewObject(new ClassObject(new Point(e.getX(), e.getY())));
         this.panel.repaint();
-        System.out.println("add class clicked");
+//        System.out.println("add class clicked");
     }
 }
