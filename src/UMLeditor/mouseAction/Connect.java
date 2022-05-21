@@ -35,7 +35,7 @@ public class Connect extends MouseAction{
         super.mouseReleased(e);
         int[] cntIdxs = null;
         this.endObj = this.panel.selectObject(e.getX(), e.getY());
-        if(!Objects.isNull(this.startObj) && !Objects.isNull(this.endObj) && this.startObj.isCanConnect() && this.endObj.isCanConnect())
+        if(!Objects.isNull(this.startObj) && !Objects.isNull(this.endObj) && this.startObj.isCanConnect() && this.endObj.isCanConnect() && !Objects.equals(this.startObj, this.endObj))
         {
             cntIdxs = this.searchCntPoint(this.startObj, this.endObj, this.preLoc, new Point(e.getX(), e.getY()));
             this.startObj.getCntList().add(new ObjectVector(this.startObj, this.endObj, cntIdxs[0], cntIdxs[1], this));

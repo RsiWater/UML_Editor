@@ -41,6 +41,12 @@ public class Select extends MouseAction{
     public void mousePressed(MouseEvent e) {
         super.mousePressed(e);
         BasicObject targetObj = this.panel.selectObject(e.getX(), e.getY());
+        this.panel.unselectAllObjects();
+        if(!Objects.isNull(targetObj))
+        {
+            targetObj.setBeSelected(true);
+        }
+
 
         if(!Objects.isNull(targetObj) && targetObj.isBeSelected())
         {
